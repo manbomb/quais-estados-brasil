@@ -1,5 +1,7 @@
-function App() {
-  return <div />;
-}
+import styles from './App.module.css';
+
+const App = () => {
+    return <div className={styles.container} />;
+};
 
 export default App;
