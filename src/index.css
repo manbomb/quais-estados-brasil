@@ -1,4 +1,12 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --charleston-green: #262928ff;
+    --dark-slate-gray: #404e4dff;
+    --android-green: #9bc53dff;
+    --cyan-process: #5bc0ebff;
+    --minion-yellow: #fde74cff;
 }
