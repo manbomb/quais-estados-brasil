@@ -10,3 +10,7 @@
     background-color: var(--dark-slate-gray);
     color: white;
 }
+
+.error {
+    border: 2px solid var(--sizzling-red) !important;
+}
