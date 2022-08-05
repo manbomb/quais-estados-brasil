@@ -18,7 +18,7 @@ const BrazilMap = ({ onClick = () => {}, selectStates = [], className = '', ...p
                 click: onClick
             }
         });
-    }, []);
+    }, [selectStates]);
 
     return <div className={`${styles.container} ${className}`} {...props}>
         <div className={styles.map} id={styles.map}></div>
