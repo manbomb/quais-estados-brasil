@@ -7,6 +7,7 @@
     min-height: 100vh;
     background-color: var(--charleston-green);
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .map {
