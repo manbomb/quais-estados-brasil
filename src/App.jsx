@@ -4,6 +4,7 @@ import styles from './App.module.css';
 
 import BrazilMap from './components/brazilMap/BrazilMap';
 import InputText from './components/inputText/InputText';
+import Regioes from './components/regioes/Regioes';
 
 import data from './data/estados.json';
 import { removeAcento } from './utils';
@@ -48,6 +49,7 @@ const App = () => {
                 onEnter={() => enterNewEstado()}
                 error={error}
             />
+            <Regioes selectStates={selectStates} />
         </div>
         <div className={styles.map}>
             <BrazilMap selectStates={selectStates.map(e => e.sigla.toLowerCase())} />
