@@ -4,54 +4,27 @@ import styles from './App.module.css';
 
 import BrazilMap from './components/brazilMap/BrazilMap';
 import InputText from './components/inputText/InputText';
+import OverlayFinished from './components/overlayFinished/OverlayFinished';
 import Regioes from './components/regioes/Regioes';
 import GameContext from './contexts/Game';
-
-import data from './data/estados.json';
-import { removeAcento } from './utils';
 
 const App = () => {
 
     const {
-        setSelectedStates,
-        selectStates
+        selectStates,
+        enterNewEstado,
+        error,
+        setEstado,
+        estado
     } = useContext(GameContext);
 
-    const [estado, setEstado] = useState('');
-    const [error, setError] = useState(false);
-
-    const enterNewEstado = () => {
-        if (!estado) return;
-        const estados = data.estados;
-
-        const estadoLower = removeAcento(estado.toLowerCase());
-        const estadosFiltred = estados.filter(e => {
-            const eNameLower = removeAcento(e.nome.toLowerCase());
-            if (eNameLower === estadoLower) return true;
-            return false;
-        });
-
-        if (estadosFiltred.length < 1) {
-            setError(true);
-            return;
-        }
-
-        setError(false);
-
-        const estadoFound = estadosFiltred[0];
-        const newSelected = [...selectStates].filter(e => e.sigla !== estadoFound.sigla);
-        newSelected.push(estadoFound);
-        setSelectedStates(newSelected);
-
-        setEstado('');
-    };
-
     return <div className={styles.container}>
+        <OverlayFinished />
         <div className={styles.list}>
             <InputText
                 onChange={setEstado}
                 value={estado}
-                onEnter={() => enterNewEstado()}
+                onEnter={() => enterNewEstado(estado)}
                 error={error}
             />
             <Regioes selectStates={selectStates} />

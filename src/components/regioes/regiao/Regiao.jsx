@@ -30,8 +30,11 @@ const Regiao = ({ regiao, selectStates }) => {
             .filter(e => e.regiao === regiao);
         setEstados(estadosByRegiao);
 
-        if (estados.length === todosEstadosByRegiao.length) setCompleted(true);
     }, [regiao, selectStates]);
+    
+    useEffect(() => {
+        if (estados.length === todosEstadosByRegiao.length) setCompleted(true);
+    }, [estados]);
 
     return <div className={styles.container}>
         <div className={`${styles.closed} ${completed ? styles.completed : ''}`} onClick={() => openClose()}>
@@ -44,7 +47,7 @@ const Regiao = ({ regiao, selectStates }) => {
                 display: openedRegiao === regiao && estados.length ? 'flex' : 'none'
             }}
         >
-            {estados.map(e => <span>{e.nome}</span>)}
+            {estados.map(e => <span key={e.sigla}>{e.nome}</span>)}
         </div>
     </div>;
 };
