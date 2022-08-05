@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import styles from './App.module.css';
 
 import BrazilMap from './components/brazilMap/BrazilMap';
 import InputText from './components/inputText/InputText';
 import Regioes from './components/regioes/Regioes';
+import GameContext from './contexts/Game';
 
 import data from './data/estados.json';
 import { removeAcento } from './utils';
 
 const App = () => {
 
+    const {
+        setSelectedStates,
+        selectStates
+    } = useContext(GameContext);
+
     const [estado, setEstado] = useState('');
-    const [selectStates, setSelectedStates] = useState([]);
     const [error, setError] = useState(false);
 
     const enterNewEstado = () => {

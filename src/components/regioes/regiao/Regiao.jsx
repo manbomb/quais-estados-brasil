@@ -1,13 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Regiao.module.css';
 
 import data from '../../../data/estados.json';
 
+import GameContext from '../../../contexts/Game';
+
 const Regiao = ({ regiao, selectStates }) => {
+
+    const {
+        openedRegiao,
+        setOpenedRegiao
+    } = useContext(GameContext);
 
     const [estados, setEstados] = useState([]);
     const [completed, setCompleted] = useState(false);
-    const [open, setOpen] = useState(false);
+    
+    const openClose = () => {
+        if (openedRegiao === regiao) {
+            setOpenedRegiao('');
+        } else {
+            setOpenedRegiao(regiao);
+        }
+    };
 
     const todosEstadosByRegiao = data.estados.filter(e => e.regiao === regiao);
 
@@ -20,14 +34,14 @@ const Regiao = ({ regiao, selectStates }) => {
     }, [regiao, selectStates]);
 
     return <div className={styles.container}>
-        <div className={`${styles.closed} ${completed ? styles.completed : ''}`} onClick={() => setOpen(!open)}>
+        <div className={`${styles.closed} ${completed ? styles.completed : ''}`} onClick={() => openClose()}>
             <h1>{regiao}</h1>
             <span>{estados.length}/{todosEstadosByRegiao.length}</span>
         </div>
         <div
             className={styles.open}
             style={{
-                display: open && estados.length ? 'flex' : 'none'
+                display: openedRegiao === regiao && estados.length ? 'flex' : 'none'
             }}
         >
             {estados.map(e => <span>{e.nome}</span>)}
