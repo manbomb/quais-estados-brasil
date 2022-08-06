@@ -2,7 +2,7 @@
     "name": "quais-estados-brasil",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://manbomb.github.io/quais-estados-brasil",
+    "homepage": "https://manbomb.github.io",
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.3.0",
@@ -19,7 +19,7 @@
         "eject": "react-scripts eject",
         "code": "code . && react-scripts start",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "deploy": "node deploy.js"
     },
     "eslintConfig": {
         "extends": [
