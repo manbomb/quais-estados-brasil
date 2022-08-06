@@ -5,7 +5,7 @@
  * Licensed under the BSD-2-Clause License. 
  */
 
-const BrMap = (() => {
+export const BrMap = (() => {
 
 	'use strict';
 
