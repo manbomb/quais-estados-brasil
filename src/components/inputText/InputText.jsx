@@ -1,12 +1,28 @@
+import { useEffect, useRef } from 'react';
 import styles from './InputText.module.css';
 
-const InputText = ({ value, onChange, className = '', onEnter, error = false, ...props }) => {
+const InputText = ({ value, onChange, className = '', onEnter, error = false, focus = false, ...props }) => {
+    const inputRef = useRef(null);
+    
     const onKeyDown = (ev) => {
         if (ev.code === 'Enter') onEnter(ev);
     };
 
-    return <div className={`${styles.container} ${className}`} {...props}>
-        <input type={'text'} className={`${error ? styles.error : ''}`} onChange={ev => onChange(ev.target.value)} value={value} onKeyDown={onKeyDown} />
+    useEffect(() => {
+        if (!focus || !inputRef) return;
+        inputRef.current.focus();
+    }, [focus])
+
+    return <div className={`${styles.container} ${className}`}>
+        <input
+            ref={inputRef}
+            type={'text'}
+            className={`${error ? styles.error : ''}`}
+            onChange={ev => onChange(ev.target.value)}
+            value={value}
+            onKeyDown={onKeyDown}
+            {...props}
+        />
     </div>;
 };
 

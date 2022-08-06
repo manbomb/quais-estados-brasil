@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import styles from './App.module.css';
 
@@ -26,6 +26,8 @@ const App = () => {
                 value={estado}
                 onEnter={() => enterNewEstado(estado)}
                 error={error}
+                focus={true}
+                placeholder={'Digite o nome de um estado'}
             />
             <Regioes selectStates={selectStates} />
         </div>
